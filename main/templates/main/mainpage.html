@@ -1,172 +1,143 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="ko">
+{% block content %}
 
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}">
-     <title>BE 권수현 2주차 과제</title>
-</head>
+<h1>lo2q's week2 review</h1>
 
-<body class="body-container">
-     <nav class="navbar-container">
-          <!--이미지 하나 넣기-->
-          🌸
-          <!-- mainpage 링크 연결-->
-          <a class="navbar-link" href="{% url 'mainpage' %}">main</a>
-          <!-- secondpage 링크 연결-->
-          <a class="navbar-link" href="{% url 'tmi' %}">Today's TMI</a>
-          <!-- git 링크 연결-->
-          <a class="navbar-link" href="https://github.com/lo2q">git</a>
-          🌸
-     </nav>
+<h2>1. 1주차 세션 리뷰</h2>
+<table border="1">
+     <thead>
+          <tr>
+               <th>용어</th>
+               <th>설명</th>
+               <th>예시</th>
+          </tr>
+     </thead>
+     <tbody>
+          <tr>
+               <td><strong>Project</strong></td>
+               <td>사이트 전체</td>
+               <td>인스타그램</td>
+          </tr>
+          <tr>
+               <td><strong>App</strong></td>
+               <td>프로젝트를 구성하는 기능의 집합</td>
+               <td>회원정보, 게시글, DM(채팅) 등</td>
+          </tr>
+     </tbody>
+</table>
 
-     <main>
-          <h1>lo2q's week2 review</h1>
+<h2>2. 템플릿(Templates)이란?</h2>
+<ul>
+     <li>Django에서 사용자에게 보여줄 화면을 구성하는 HTML 역할</li>
+     <li>보통 templates 폴더 안에 HTML 파일을 생성</li>
+     <li>views.py에서 데이터를 전달받아 HTML을 렌더링함</li>
+     <li>Django 템플릿 언어(DTL)를 사용하여 동적인 화면 구성 가능</li>
+</ul>
 
-          <h2>1. 1주차 세션 리뷰</h2>
-          <table border="1">
-               <thead>
-                    <tr>
-                         <th>용어</th>
-                         <th>설명</th>
-                         <th>예시</th>
-                    </tr>
-               </thead>
-               <tbody>
-                    <tr>
-                         <td><strong>Project</strong></td>
-                         <td>사이트 전체</td>
-                         <td>인스타그램</td>
-                    </tr>
-                    <tr>
-                         <td><strong>App</strong></td>
-                         <td>프로젝트를 구성하는 기능의 집합</td>
-                         <td>회원정보, 게시글, DM(채팅) 등</td>
-                    </tr>
-               </tbody>
-          </table>
+<h2>3. 템플릿 사용해보기</h2>
+<ol>
+     <li>HTML, CSS 파일 작성</li>
+     <li>views.py 작성</li>
+     <li>urls.py 작성</li>
+     <li>HTML 페이지와 view 연결</li>
+</ol>
 
-          <h2>2. 템플릿(Templates)이란?</h2>
-          <ul>
-               <li>Django에서 사용자에게 보여줄 화면을 구성하는 HTML 역할</li>
-               <li>보통 templates 폴더 안에 HTML 파일을 생성</li>
-               <li>views.py에서 데이터를 전달받아 HTML을 렌더링함</li>
-               <li>Django 템플릿 언어(DTL)를 사용하여 동적인 화면 구성 가능</li>
-          </ul>
+<h2>4. 템플릿 언어(Django Template Language, DTL)</h2>
+<ul>
+     <li>HTML 안에서 동적 데이터 처리 가능</li>
+     <li>파이썬 문법을 기반으로 동작</li>
+     <li>제공 기능: 변수 출력, 조건문, 반복문 등</li>
+</ul>
 
-          <h2>3. 템플릿 사용해보기</h2>
-          <ol>
-               <li>HTML, CSS 파일 작성</li>
-               <li>views.py 작성</li>
-               <li>urls.py 작성</li>
-               <li>HTML 페이지와 view 연결</li>
-          </ol>
+<h3>템플릿 변수</h3>
+<table border="1">
+     <thead>
+          <tr>
+               <th>문법</th>
+               <th>설명</th>
+          </tr>
+     </thead>
+     <tbody>
+          <tr>
+               <td>&#123;&#123; 변수명 &#125;&#125;</td>
+               <td>변수 출력</td>
+          </tr>
+          <tr>
+               <td>&#123;&#123; 변수명.속성명 &#125;&#125;</td>
+               <td>객체의 속성 출력</td>
+          </tr>
+          <tr>
+               <td>&#123;&#123; list명.순서 &#125;&#125;</td>
+               <td>리스트 인덱스 출력</td>
+          </tr>
+          <tr>
+               <td>&#123;&#123; dict.key &#125;&#125;</td>
+               <td>딕셔너리 키 값 출력</td>
+          </tr>
+     </tbody>
+</table>
+<h3>템플릿 태그</h3>
+<table border="1">
+     <thead>
+          <tr>
+               <th>문법</th>
+               <th>설명</th>
+          </tr>
+     </thead>
+     <tbody>
+          <tr>
+               <td>
+                    &#123;% if 조건 %&#125;<br>
+                    &#123;% else %&#125;<br>
+                    &#123;% endif %&#125;
+               </td>
+               <td>조건문</td>
+          </tr>
+          <tr>
+               <td>
+                    &#123;% for item in list %&#125;<br>
+                    &#123;&#123; item &#125;&#125;<br>
+                    &#123;% endfor %&#125;
+               </td>
+               <td>반복문</td>
+          </tr>
+     </tbody>
+</table>
+<h2>5. 템플릿 상속이란?</h2>
+<p>
+     공통된 HTML 구조를 "부모 템플릿"으로 정의하고,<br>
+     이를 "자식 템플릿"에서 확장하여 사용하는 방식이다.
+</p>
+<p>
+     예를 들어, 여러 HTML 파일에서 동일하게 반복되는 head, nav bar 등은 하나의 부모 템플릿으로 만들고,<br>
+     자식 템플릿에서 필요한 부분만 따로 작성하여 유지 보수와 재사용성을 높일 수 있다.
+</p>
+<ul>
+     <li>&#123;% block content %&#125; : 블록 범위 시작</li>
+     <li>&#123;% endblock %&#125; : 블록 범위 끝</li>
+     <li>&#123;% extends 'base.html' %&#125; : base.html을 확장하겠다는 의미</li>
+</ul>
 
-          <h2>4. 템플릿 언어(Django Template Language, DTL)</h2>
-          <ul>
-               <li>HTML 안에서 동적 데이터 처리 가능</li>
-               <li>파이썬 문법을 기반으로 동작</li>
-               <li>제공 기능: 변수 출력, 조건문, 반복문 등</li>
-          </ul>
+<h2>6. static이란?</h2>
+<p>
+     웹 페이지에서 사용하는 CSS, 이미지 등 정적인 파일을 저장하는 디렉토리이다.
+</p>
+<p>
+     static 파일을 HTML에서 사용하기 위해서는 다음과 같은 문법을 사용한다.
+</p>
+<ul>
+     <li>&#123;% load static %&#125; : HTML 상단에 선언</li>
+     <li>&lt;img src="&#123;% static 'images/파일명.확장자' %&#125;" alt=""&gt; : 이미지 파일 사용</li>
+     <li>&lt;link rel="stylesheet" type="text/css" href="&#123;% static 'css/파일명.css' %&#125;"&gt; : CSS 포함
+     </li>
+</ul>
+<p>
+     또한 settings.py 파일에서 static 경로를 다음과 같이 설정해줘야 한다.
+</p>
+<ul>
+     <li>STATICFILES_DIRS = [os.path.join(BASE_DIR, 'project', 'static')]</li>
+     <li>STATIC_ROOT = os.path.join(BASE_DIR, 'static')</li>
+</ul>
 
-          <h3>템플릿 변수</h3>
-          <table border="1">
-               <thead>
-                    <tr>
-                         <th>문법</th>
-                         <th>설명</th>
-                    </tr>
-               </thead>
-               <tbody>
-                    <tr>
-                         <td>&#123;&#123; 변수명 &#125;&#125;</td>
-                         <td>변수 출력</td>
-                    </tr>
-                    <tr>
-                         <td>&#123;&#123; 변수명.속성명 &#125;&#125;</td>
-                         <td>객체의 속성 출력</td>
-                    </tr>
-                    <tr>
-                         <td>&#123;&#123; list명.순서 &#125;&#125;</td>
-                         <td>리스트 인덱스 출력</td>
-                    </tr>
-                    <tr>
-                         <td>&#123;&#123; dict.key &#125;&#125;</td>
-                         <td>딕셔너리 키 값 출력</td>
-                    </tr>
-               </tbody>
-          </table>
-          <h3>템플릿 태그</h3>
-          <table border="1">
-               <thead>
-                    <tr>
-                         <th>문법</th>
-                         <th>설명</th>
-                    </tr>
-               </thead>
-               <tbody>
-                    <tr>
-                         <td>
-                              &#123;% if 조건 %&#125;<br>
-                              &#123;% else %&#125;<br>
-                              &#123;% endif %&#125;
-                         </td>
-                         <td>조건문</td>
-                    </tr>
-                    <tr>
-                         <td>
-                              &#123;% for item in list %&#125;<br>
-                              &#123;&#123; item &#125;&#125;<br>
-                              &#123;% endfor %&#125;
-                         </td>
-                         <td>반복문</td>
-                    </tr>
-               </tbody>
-          </table>
-          <h2>5. 템플릿 상속이란?</h2>
-          <p>
-               공통된 HTML 구조를 "부모 템플릿"으로 정의하고,<br>
-               이를 "자식 템플릿"에서 확장하여 사용하는 방식이다.
-          </p>
-          <p>
-               예를 들어, 여러 HTML 파일에서 동일하게 반복되는 head, nav bar 등은 하나의 부모 템플릿으로 만들고,<br>
-               자식 템플릿에서 필요한 부분만 따로 작성하여 유지 보수와 재사용성을 높일 수 있다.
-          </p>
-          <ul>
-               <li>&#123;% block content %&#125; : 블록 범위 시작</li>
-               <li>&#123;% endblock %&#125; : 블록 범위 끝</li>
-               <li>&#123;% extends 'base.html' %&#125; : base.html을 확장하겠다는 의미</li>
-          </ul>
-
-          <h2>6. static이란?</h2>
-          <p>
-               웹 페이지에서 사용하는 CSS, 이미지 등 정적인 파일을 저장하는 디렉토리이다.
-          </p>
-          <p>
-               static 파일을 HTML에서 사용하기 위해서는 다음과 같은 문법을 사용한다.
-          </p>
-          <ul>
-               <li>&#123;% load static %&#125; : HTML 상단에 선언</li>
-               <li>&lt;img src="&#123;% static 'images/파일명.확장자' %&#125;" alt=""&gt; : 이미지 파일 사용</li>
-               <li>&lt;link rel="stylesheet" type="text/css" href="&#123;% static 'css/파일명.css' %&#125;"&gt; : CSS 포함
-               </li>
-          </ul>
-          <p>
-               또한 settings.py 파일에서 static 경로를 다음과 같이 설정해줘야 한다.
-          </p>
-          <ul>
-               <li>STATICFILES_DIRS = [os.path.join(BASE_DIR, 'project', 'static')]</li>
-               <li>STATIC_ROOT = os.path.join(BASE_DIR, 'static')</li>
-          </ul>
-     </main>
-
-     <footer>
-          <p>멋쟁이사자처럼 13기 BE 권수현의 2주차 과제 페이지입니다.</p>
-     </footer>
-
-
-</body>
-
-</html>
+{% endblock%}
