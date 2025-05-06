@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="contents">2025 멋쟁이사자처럼 13기</h1>
+<div class="contents"
+     style="font-size: 20px; font-weight: 600; color: #333; padding: 8px 12px; border-bottom: 2px solid #ccc; margin-bottom: 16px;">
+     Blog List
+</div>
+
+<div>
+     {% for blog in blogs %}
+     <div>
+          <hr />
+          <h3>{{blog.title}}</h3>
+          {{blog.writer}} | {{blog.created_at}}<br>
+          {{blog.summary}}
+          <a href="{% url 'main:detail' blog.id %}">자세히 보기</a>
+          <br>
+     </div>
+     {% endfor %}
+</div>
+
+{% endblock %}
