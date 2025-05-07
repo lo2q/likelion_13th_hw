@@ -28,6 +28,7 @@ def update(request, id):
      update_post.title = request.POST['title']
      update_post.writer = request.POST['writer']
      update_post.tags = request.POST['tags']
+     update_post.feeling = request.POST['feeling']
      update_post.content = request.POST['content']
      update_post.status = request.POST['status']
      update_post.created_at = timezone.now()
@@ -47,6 +48,7 @@ def create(request):
      new_post.title = request.POST['title']
      new_post.writer = request.POST['writer']
      new_post.tags = request.POST['tags']
+     new_post.feeling = request.POST['feeling']
      new_post.content = request.POST['content']
      new_post.status = request.POST['status']
      new_post.created_at = timezone.now()

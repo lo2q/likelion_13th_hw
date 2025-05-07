@@ -5,8 +5,10 @@
 <h3>{{post.title}}</h3>
 작성자 : {{post.writer}} /
 날짜 : {{post.created_at}} /
-태그 : {{post.tags}} /
 상태 : {{post.status}}
+<br>
+<p>태그 : {{post.tags}}</p>
+<p>오늘의 기분: {{ post.feeling }}</p>
 <hr />
 {% if post.image %}
 <p><img src="{{ post.image.url }}" alt="사진" width="100px"></p>

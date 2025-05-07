@@ -6,7 +6,9 @@
      {% csrf_token %}
      <p>제목: <input type="text" name="title" value="{{post.title}}"></p>
      <p>작성자: <input type="text" name="writer" value="{{post.writer}}"></p>
-     <p>태그: <input type="text" name="tags" value="{{post.tags}}"></p>
+     <p>태그: <input type="text" name="tags" value="{{post.tags}}" style="width: 300px;"></p>
+     <br>
+     <p>감정: <input type="text" name="feeling" value="{{post.feeling}}" style="width: 300px;"></p>
      {% if post.image %}
      <p><img src="{{ post.image.url }}" alt="사진" width="100px"></p>
      {% endif %}
