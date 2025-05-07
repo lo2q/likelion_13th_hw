@@ -2,16 +2,17 @@
 {% load static %}
 {% block content %}
 
-<h3>{{blog.title}}</h3>
-작성자 : {{blog.writer}} /
-날짜 : {{blog.created_at}} /
-상태 : {{blog.status}}
+<h3>{{post.title}}</h3>
+작성자 : {{post.writer}} /
+날짜 : {{post.created_at}} /
+태그 : {{post.tags}} /
+상태 : {{post.status}}
 <hr />
-{% if blog.image %}
-<p><img src="{{ blog.image.url }}" alt="사진" width="100px"></p>
+{% if post.image %}
+<p><img src="{{ post.image.url }}" alt="사진" width="100px"></p>
 {% endif %}
-<p>{{blog.content}}</p>
-<a href="{% url 'main:edit' blog.id %}">글 수정하기</a>
-<a href="{% url 'main:delete' blog.id %}">삭제하기</a>
+<p>{{post.content}}</p>
+<a href="{% url 'main:edit' post.id %}">글 수정하기</a>
+<a href="{% url 'main:delete' post.id %}">삭제하기</a>
 <br>
 {% endblock %}

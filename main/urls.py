@@ -4,7 +4,7 @@ from .views import *
 app_name = "main"
 urlpatterns = [path('', mainpage, name="mainpage"),
 path('second', secondpage, name="secondpage"),
-path('new-blog', new_blog, name="new-blog"),
+path('new-post', new_post, name="new-post"),
 path('create', create, name="create"),
 path('<int:id>', detail, name="detail"),
 path('edit/<int:id>', edit, name="edit"),

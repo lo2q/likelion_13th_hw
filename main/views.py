@@ -8,46 +8,48 @@ def mainpage(request) :
      return render(request, 'main/mainpage.html');
 
 def secondpage(request) :
-     blogs = Blog.objects.all()
-     return render(request, 'main/secondpage.html', {'blogs' : blogs});
+     posts = Post.objects.all()
+     return render(request, 'main/secondpage.html', {'posts' : posts});
 
 
-def new_blog(request) :
-     return render(request, 'main/new-blog.html')
+def new_post(request) :
+     return render(request, 'main/new-post.html')
 
 def detail(request, id) :
-     blog = get_object_or_404(Blog, pk=id)
-     return render(request, 'main/detail.html', {'blog': blog})
+     post = get_object_or_404(Post, pk=id)
+     return render(request, 'main/detail.html', {'post' : post})
 
 def edit(request, id):
-     edit_blog = Blog.objects.get(pk=id)
-     return render(request, 'main/edit.html', {"blog": edit_blog})
+     edit_post = Post.objects.get(pk=id)
+     return render(request, 'main/edit.html',  {"post": edit_post})
 
 def update(request, id):
-     update_blog = Blog.objects.get(pk=id)
-     update_blog.title = request.POST['title']
-     update_blog.writer = request.POST['writer']
-     update_blog.content = request.POST['content']
-     update_blog.status = request.POST['status']
-     update_blog.created_at = timezone.now()
-     update_blog.image = request.FILES.get('image')
-     update_blog.save()
-     return redirect('main:detail', update_blog.id)
+     update_post = Post.objects.get(pk=id)
+     update_post.title = request.POST['title']
+     update_post.writer = request.POST['writer']
+     update_post.tags = request.POST['tags']
+     update_post.content = request.POST['content']
+     update_post.status = request.POST['status']
+     update_post.created_at = timezone.now()
+     image = request.FILES.get('image')
+     if image:
+          update_post.image = image
+     update_post.save()
+     return redirect('main:detail', update_post.id)
 
 def delete(request, id):
-     delete_blog = Blog.objects.get(pk=id)
-     delete_blog.delete()
+     delete_post = Post.objects.get(pk=id)
+     delete_post.delete()
      return redirect('main:secondpage')
 
-def create(request) :
-     new_blog = Blog()
-     new_blog.title = request.POST['title']
-     new_blog.writer = request.POST['writer']
-     new_blog.content = request.POST['content']
-     new_blog.status = request.POST['status']
-     new_blog.created_at = timezone.now()
-     new_blog.image = request.FILES.get('image')
-
-     new_blog.save()
-
-     return redirect('main:detail', new_blog.id)
+def create(request):
+     new_post = Post()
+     new_post.title = request.POST['title']
+     new_post.writer = request.POST['writer']
+     new_post.tags = request.POST['tags']
+     new_post.content = request.POST['content']
+     new_post.status = request.POST['status']
+     new_post.created_at = timezone.now()
+     new_post.image = request.FILES.get('image')
+     new_post.save()
+     return redirect('main:detail', new_post.id)
