@@ -81,7 +81,9 @@ nav.navbar-container {
     flex-wrap: wrap;
 }
 
+
 .navbar-link {
+    display: inline-block;          /* 링크 자체 크기 고정 */
     font-size: 15px;
     font-weight: 600;
     color: #c85d67;
@@ -90,6 +92,9 @@ nav.navbar-container {
     border-radius: 6px;
     background-color: #ffe9ec;
     transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1;                 /* 텍스트와 높이 비율 고정 */
+    height: 40px;                   /* 고정 높이 설정 */
+    vertical-align: middle;         /* 수직 중앙 정렬 */
 }
 
 .navbar-link:hover {

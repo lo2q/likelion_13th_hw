@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>마이페이지에 오신 것을 환영합니다 🖤</h1>
+
+<div class="profile-container">
+     <div class="profile-info">
+          <p><strong>사용자명:</strong> {{ user.username }}</p>
+          <p><strong>소개:</strong> {{ user.profile.bio }}</p>
+          <p><strong>전화번호:</strong> {{ user.profile.phone_number }}</p>
+          <p><strong>생일:</strong> {{ user.profile.birth|date:"Y-m-d" }}</p>
+     </div>
+</div>
+
+<hr>
+
+<h2>{{ user.username }}님의 작성 글 목록</h2>
+<div class="posts-container">
+     {% if user_posts %}
+     {% for post in user_posts %}
+     <div class="post-item">
+          <h3><a href="{% url 'main:detail' post.id %}">{{ post.title }}</a> - 오늘 기분 : {{ post.feeling }}</h3>
+
+          <p>{{ post.writer }} | # {{ post.tags }} | {{ post.created_at|date:"Y-m-d H:i" }}
+          </p>
+          <p>{{ post.summary }}</p>
+          <hr>
+     </div>
+     {% endfor %}
+     {% else %}
+     <p>아직 작성한 글이 없습니다.</p>
+     {% endif %}
+</div>
+
+{% endblock %}

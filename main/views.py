@@ -26,7 +26,6 @@ def edit(request, id):
 def update(request, id):
      update_post = Post.objects.get(pk=id)
      update_post.title = request.POST['title']
-     update_post.writer = request.POST['writer']
      update_post.tags = request.POST['tags']
      update_post.feeling = request.POST['feeling']
      update_post.content = request.POST['content']
@@ -35,6 +34,8 @@ def update(request, id):
      image = request.FILES.get('image')
      if image:
           update_post.image = image
+
+     update_post.writer=request.user
      update_post.save()
      return redirect('main:detail', update_post.id)
 
@@ -46,12 +47,12 @@ def delete(request, id):
 def create(request):
      new_post = Post()
      new_post.title = request.POST['title']
-     new_post.writer = request.POST['writer']
      new_post.tags = request.POST['tags']
      new_post.feeling = request.POST['feeling']
      new_post.content = request.POST['content']
      new_post.status = request.POST['status']
      new_post.created_at = timezone.now()
      new_post.image = request.FILES.get('image')
+     new_post.writer=request.user
      new_post.save()
      return redirect('main:detail', new_post.id)

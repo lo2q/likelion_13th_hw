@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block content %}
+<form action="{% url 'accounts:signup' %}" method="POST">
+     {% csrf_token %}
+     <p>username :
+          <input type="text" name="username">
+     </p>
+     <p>password :
+          <input type="password" name="password">
+     </p>
+     <p>confirm :
+          <input type="password" name="confirm">
+     </p>
+
+     <p>bio :
+          <input type="text" name="bio" style="width: 300px;" placeholder="자신을 간단히 소개해보세요!">
+     </p>
+     <p>phone_number :
+          <input type="text" name="phone_number" placeholder="010-1234-5678">
+     </p>
+     <p>birth :
+          <input type="date" name="birth">
+     </p>
+     <input type="submit" value="회원가입">
+</form>
+{% endblock %}
