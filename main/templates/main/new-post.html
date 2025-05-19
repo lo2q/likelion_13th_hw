@@ -4,7 +4,6 @@
 <form action="{% url 'main:create' %}" method="POST" enctype="multipart/form-data">
      {% csrf_token %}
      <p>제목: <input type="text" name="title"></p>
-     <p>태그: <input type="text" name="tags" placeholder="쉼표로 구분하여 입력" style="width: 300px;"></p>
      <p>감정: <input type="text" name="feeling" placeholder="오늘의 감정을 한 줄로 입력해보세요!" style="width: 300px;"></p>
      <p>사진: <input type="file" name="image"></p>
      <p>내용: <textarea name="content" cols="30" rows="10"></textarea></p>
