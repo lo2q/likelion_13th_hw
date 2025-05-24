@@ -39,8 +39,10 @@ def signup(request):
                phone_number=request.POST['phone_number']
                bio=request.POST['bio']
 
-               profile = Profile(user=user, birth=birth, phone_number=phone_number, bio=bio)
-               profile.save()
+               user.profile.birth = birth
+               user.profile.phone_number = phone_number
+               user.profile.bio = bio
+               user.profile.save()
                
                auth.login(request, user)
                return redirect('/')

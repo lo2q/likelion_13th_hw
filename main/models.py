@@ -24,6 +24,9 @@ class Post(models.Model):
      image = models.ImageField(upload_to="post/", blank=True, null=True)
      tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
 
+     like = models.ManyToManyField(User, related_name='likes', blank=True)
+     like_count = models.PositiveIntegerField(default=0)
+
      def __str__(self):
           return self.title
      

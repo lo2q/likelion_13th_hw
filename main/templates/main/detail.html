@@ -3,16 +3,24 @@
 {% block content %}
 
 <h3>{{post.title}}</h3>
-작성자 : {{post.writer}} /
-날짜 : {{post.created_at}} /
-상태 : {{post.status}}
+<a href="{% url 'users:mypage' post.writer.id %}"> 작성자 : {{post.writer}}</a>
+<!-- 작성자 : {{post.writer}} / -->
+/ 날짜 : {{post.created_at}} /
+상태 : {{post.status}} /
+오늘의 기분: {{ post.feeling }}
 <br>
 <p>
      {% for tag in post.tags.all %}
      <a href="{% url 'main:tag-posts' tag.id %}">#{{ tag.name }} </a>
      {% endfor %}
 </p>
-<p>오늘의 기분: {{ post.feeling }}</p>
+<hr>
+<a href="{% url 'main:likes' post.id %}">
+     {% if user in post.like.all %} 취소 {% else %} 좋아요 {% endif %}
+</a>
+{{post.like_count}}개
+
+
 <hr />
 {% if post.image %}
 <p><img src="{{ post.image.url }}" alt="사진" width="100px"></p>

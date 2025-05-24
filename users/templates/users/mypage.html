@@ -14,6 +14,23 @@
 </div>
 
 <hr>
+<p>팔로워<br>{{ user.profile.followers.count}}명</p>
+<p>팔로잉<br>{{ user.profile.followings.count}}명</p>
+
+{% if request.user != user %}
+{% if request.user.profile in user.profile.followers.all %}
+<a href="{% url 'users:follow' user.id %}">
+     <button type="button" class="btn btn-outline-info">언팔로우</button>
+</a>
+{% else %}
+<a href="{% url 'users:follow' user.id %}">
+     <button type="button" class="btn btn-info">팔로우</button>
+</a>
+
+{% endif %}
+{% endif %}
+
+<hr>
 
 <h2>{{ user.username }}님이 작성한 글 목록</h2>
 <div class="posts-container">
@@ -22,7 +39,8 @@
      <div class="post-item">
           <h3><a href="{% url 'main:detail' post.id %}">{{ post.title }}</a> - 오늘 기분 : {{ post.feeling }}</h3>
 
-          <p>{{ post.writer }} | # {{ post.tags }} | {{ post.created_at|date:"Y-m-d H:i" }}
+          <p>{{ post.writer }} | {% for tag in post.tags.all %}#{{ tag.name }}
+               {% endfor %} | {{ post.created_at|date:"Y-m-d H:i" }}
           </p>
           <p>{{ post.summary }}</p>
           <hr>
